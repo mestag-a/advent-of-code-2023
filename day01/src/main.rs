@@ -6,7 +6,7 @@ fn part1(s: &str) -> u32 {
         let mut numbers = s
             .chars()
             .filter_map(|c| {
-                c.to_string().parse::<u32>().ok()
+                c.to_digit(10)
             })
             .peekable();
 
