@@ -3,16 +3,14 @@ use std::io;
 fn part1(s: &str) -> u32 {
     s.lines()
     .map(|s| {
-        let mut numbers = s.chars()
-        .filter(|c| {
-            c.is_digit(10)
-        })
-        .map(|c| {
-            c.to_digit(10)
-        })
-        .peekable();
+        let mut numbers = s
+            .chars()
+            .filter_map(|c| {
+                c.to_string().parse::<u32>().ok()
+            })
+            .peekable();
 
-        numbers.peek().unwrap().unwrap() * 10 + numbers.last().unwrap().unwrap()
+        numbers.peek().unwrap() * 10 + numbers.last().unwrap()
     })
     .sum()
 }
